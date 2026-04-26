@@ -1,0 +1,11 @@
+.direnv/
+result
+result-*
+
+.DS_Store
+.env
+.env.*
+!.env.example
+
+.vscode/
+.idea/

@@ -1,0 +1,5 @@
+# Adjust this threshold per repository risk tolerance.
+fail-on-severity: high
+
+# Fail the workflow instead of reporting only.
+warn-only: false
