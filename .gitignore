@@ -1,6 +1,7 @@
 .direnv/
 result
 result-*
+logs/
 
 .DS_Store
 .env
@@ -9,3 +10,23 @@ result-*
 
 .vscode/
 .idea/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+*-blx.bib
+
+# Project build outputs
+/*.pdf
+/out/

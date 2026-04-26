@@ -2,7 +2,7 @@
   description = "";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
   outputs =
@@ -16,7 +16,9 @@
         packages = with pkgs; [
           commitlint
           lefthook
-          # Add language toolchain here (uv, pnpm, cargo, go, ...).
+          tex-fmt
+          texlive.combined.scheme-full
+          texlivePackages.chktex
         ];
       };
     };

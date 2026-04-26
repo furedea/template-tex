@@ -2,3 +2,12 @@ commit-msg:
   commands:
     commitlint:
       run: commitlint --edit {1}
+
+pre-commit:
+  commands:
+    tex-fmt:
+      glob: "*.tex"
+      run: tex-fmt --check {staged_files}
+    chktex:
+      glob: "*.tex"
+      run: chktex -q {staged_files}
