@@ -1,29 +1,23 @@
-name: GitHub Actions Lint
+name: CI
 
 on:
   push:
     branches:
       - main
-    paths:
-      - ".github/workflows/**"
-      - ".github/actions/**"
   pull_request:
-    paths:
-      - ".github/workflows/**"
-      - ".github/actions/**"
 
 permissions: {}
-
-defaults:
-  run:
-    shell: bash
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  actionlint:
+  lint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -34,18 +28,16 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run actionlint
-        uses: raven-actions/actionlint@205b530c5d9fa8f44ae9ed59f341a0db994aa6f8 # v2.1.2
-        with:
-          fail-on-error: true
-          shellcheck: true
-          pyflakes: true
+      - name: Install tex-fmt
+        run: cargo install tex-fmt
 
-  zizmor:
+      - name: Run tex-fmt
+        run: find . -name '*.tex' -exec tex-fmt --check {} +
+
+  chktex:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      actions: read
       contents: read
     steps:
       - name: Checkout repository
@@ -53,7 +45,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run zizmor
-        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
-        with:
-          advanced-security: false
+      - name: Install chktex
+        run: sudo apt-get update && sudo apt-get install -y chktex
+
+      - name: Run chktex
+        run: find . -name '*.tex' -exec chktex -q {} +
