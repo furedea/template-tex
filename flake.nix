@@ -6,7 +6,7 @@
   };
 
   outputs =
-    { nixpkgs }:
+    { nixpkgs, ... }:
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs { inherit system; };
