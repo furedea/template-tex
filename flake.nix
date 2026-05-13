@@ -17,6 +17,7 @@
           commitlint
           deadnix
           lefthook
+          ls-lint
           nixfmt-rfc-style
           statix
           tex-fmt

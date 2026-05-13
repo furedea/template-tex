@@ -21,3 +21,5 @@ pre-commit:
     chktex:
       glob: "*.tex"
       run: chktex -q {all_files}
+    ls-lint:
+      run: git ls-files -z | xargs -0 ls_lint
