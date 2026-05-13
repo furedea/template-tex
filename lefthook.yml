@@ -4,10 +4,20 @@ commit-msg:
       run: commitlint --edit {1}
 
 pre-commit:
+  parallel: true
   commands:
+    nixfmt:
+      glob: "*.nix"
+      run: bash -c 'mapfile -t files < <(git ls-files "*.nix"); ((${#files[@]} == 0)) || nixfmt --check "${files[@]}"'
+    statix:
+      glob: "*.nix"
+      run: statix check .
+    deadnix:
+      glob: "*.nix"
+      run: deadnix --fail .
     tex-fmt:
       glob: "*.tex"
-      run: tex-fmt --check {staged_files}
+      run: tex-fmt --check {all_files}
     chktex:
       glob: "*.tex"
-      run: chktex -q {staged_files}
+      run: chktex -q {all_files}

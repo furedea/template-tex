@@ -5,5 +5,10 @@
     "schedule:weekly",
     ":pinAllExceptPeerDependencies",
     "helpers:pinGitHubActionDigests"
-  ]
+  ],
+  "mode": "full",
+  "dependencyDashboard": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }

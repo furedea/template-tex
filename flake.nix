@@ -6,7 +6,7 @@
   };
 
   outputs =
-    { self, nixpkgs }:
+    { nixpkgs }:
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs { inherit system; };
@@ -15,7 +15,10 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           commitlint
+          deadnix
           lefthook
+          nixfmt-rfc-style
+          statix
           tex-fmt
           texlive.combined.scheme-full
           texlivePackages.chktex
