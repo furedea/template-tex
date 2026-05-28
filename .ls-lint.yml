@@ -7,13 +7,9 @@ ignore:
   - .direnv
   - result
   - result-*
-  - "**/logs"
-  - "**/.cache"
+  - docs/logs
 
-  - "**/README.md"
-  - "**/AGENTS.md"
-  - "**/CLAUDE.md"
-  - "**/SKILL.md"
+  - README.md
 
   - _minted*
   - pythontex-files-*
