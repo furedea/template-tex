@@ -8,6 +8,15 @@
   ],
   "mode": "full",
   "dependencyDashboard": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "dependencyDashboardApproval": false,
+    "rangeStrategy": "update-lockfile",
+    "prCreation": "immediate",
+    "minimumReleaseAge": null,
+    "vulnerabilityFixStrategy": "lowest"
+  },
   "lockFileMaintenance": {
     "enabled": true
   }
