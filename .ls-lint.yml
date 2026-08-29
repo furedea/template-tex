@@ -1,5 +1,6 @@
 ls:
   .dir: regex:\.?[a-z0-9]+(-[a-z0-9]+)*
+  .md: regex:[a-z0-9]*([._][a-z0-9]+)* | regex:(README|CONTRIBUTING|CHANGELOG|AGENTS|CLAUDE|SKILL)
   .*: regex:[a-z0-9]*([._][a-z0-9]+)*
 
 ignore:
@@ -7,11 +8,10 @@ ignore:
   - .direnv
   - result
   - result-*
+  - "{.venv,.uv-cache,.ruff_cache,.pytest_cache,.ipynb_checkpoints,__pycache__,node_modules,target}"
+  - "**/{.venv,.uv-cache,.ruff_cache,.pytest_cache,.ipynb_checkpoints,__pycache__,node_modules,target}"
   - docs/logs
+  - "**/docs/logs"
 
-  - README.md
-
-  - _minted*
-  - pythontex-files-*
-  - svg-inkscape
-  - auto
+  - "{_minted*,pythontex-files-*,svg-inkscape,auto}"
+  - "**/{_minted*,pythontex-files-*,svg-inkscape,auto}"
