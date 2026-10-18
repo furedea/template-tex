@@ -18,10 +18,10 @@
           deadnix
           lefthook
           ls-lint
-          nixfmt-rfc-style
+          nixfmt
           statix
           tex-fmt
-          texlive.combined.scheme-full
+          texliveFull
           texlivePackages.chktex
         ];
       };
