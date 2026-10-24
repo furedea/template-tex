@@ -1,26 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "schedule:weekly",
-    ":pinAllExceptPeerDependencies",
-    "helpers:pinGitHubActionDigests"
-  ],
-  "mode": "full",
-  "dependencyDashboard": true,
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": ["security"],
-    "dependencyDashboardApproval": false,
-    "rangeStrategy": "update-lockfile",
-    "prCreation": "immediate",
-    "minimumReleaseAge": null,
-    "vulnerabilityFixStrategy": "lowest"
-  },
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "nix": {
-    "enabled": true
-  }
+  "extends": ["github>furedea/renovate-config"]
 }
