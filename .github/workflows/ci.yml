@@ -94,9 +94,15 @@ jobs:
     secrets:
       claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
+  codex-review:
+    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@9bea83d997de4006c411bb5f40091275e316f44f # main
+    permissions: {}
+    secrets:
+      codex_review_token: ${{ secrets.CODEX_REVIEW_TOKEN }}
+
   all-green:
     if: always()
-    needs: [nix-lint, lint, chktex, claude-review]
+    needs: [nix-lint, lint, chktex, claude-review, codex-review]
     runs-on: ubuntu-latest
     timeout-minutes: 1
     permissions: {}
