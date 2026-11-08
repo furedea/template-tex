@@ -18,7 +18,7 @@ defaults:
 
 jobs:
   nix-lint:
-    uses: furedea/reusable-workflows/.github/workflows/nix-lint.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/nix-lint.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions:
       contents: read
 
@@ -67,23 +67,23 @@ jobs:
         run: find . -name '*.tex' -exec chktex -q {} +
 
   gha-lint:
-    uses: furedea/reusable-workflows/.github/workflows/gha-lint.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/gha-lint.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions:
       actions: read
       contents: read
 
   dependency-review:
-    uses: furedea/reusable-workflows/.github/workflows/dependency-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/dependency-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions:
       contents: read
 
   nix-check:
-    uses: furedea/reusable-workflows/.github/workflows/nix-check.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/nix-check.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions:
       contents: read
 
   claude-review:
-    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions:
       contents: read
       pull-requests: write
@@ -91,7 +91,7 @@ jobs:
       claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
   codex-review:
-    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
     permissions: {}
     secrets:
       codex_review_token: ${{ secrets.CODEX_REVIEW_TOKEN }}
