@@ -18,29 +18,9 @@ defaults:
 
 jobs:
   nix-lint:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    uses: furedea/reusable-workflows/.github/workflows/nix-lint.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
     permissions:
       contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31.11.3
-
-      - name: Run nixfmt
-        run: |
-          mapfile -t files < <(git ls-files "*.nix")
-          ((${#files[@]} == 0)) || nix run nixpkgs#nixfmt -- --check "${files[@]}"
-
-      - name: Run statix
-        run: nix run nixpkgs#statix -- check .
-
-      - name: Run deadnix
-        run: nix run nixpkgs#deadnix -- --fail .
 
   lint:
     runs-on: ubuntu-latest
@@ -86,8 +66,24 @@ jobs:
       - name: Run chktex
         run: find . -name '*.tex' -exec chktex -q {} +
 
+  gha-lint:
+    uses: furedea/reusable-workflows/.github/workflows/gha-lint.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    permissions:
+      actions: read
+      contents: read
+
+  dependency-review:
+    uses: furedea/reusable-workflows/.github/workflows/dependency-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    permissions:
+      contents: read
+
+  nix-check:
+    uses: furedea/reusable-workflows/.github/workflows/nix-check.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
+    permissions:
+      contents: read
+
   claude-review:
-    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@fc0cba95e88e0cdad9837bf8212d324f3cad50a5 # main
+    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
     permissions:
       contents: read
       pull-requests: write
@@ -95,14 +91,22 @@ jobs:
       claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
   codex-review:
-    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@9bea83d997de4006c411bb5f40091275e316f44f # main
+    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@c1a43f64ed01a49fa05eccbf8a45dcdf0a9385f9 # v1.0.0
     permissions: {}
     secrets:
       codex_review_token: ${{ secrets.CODEX_REVIEW_TOKEN }}
 
   all-green:
     if: always()
-    needs: [nix-lint, lint, chktex, claude-review, codex-review]
+    needs:
+      - nix-lint
+      - lint
+      - chktex
+      - gha-lint
+      - dependency-review
+      - nix-check
+      - claude-review
+      - codex-review
     runs-on: ubuntu-latest
     timeout-minutes: 1
     permissions: {}
