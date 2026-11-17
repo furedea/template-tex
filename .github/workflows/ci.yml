@@ -18,7 +18,7 @@ defaults:
 
 jobs:
   nix-lint:
-    uses: furedea/reusable-workflows/.github/workflows/nix-lint.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/nix-lint.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       contents: read
 
@@ -67,29 +67,29 @@ jobs:
         run: find . -name '*.tex' -exec chktex -q {} +
 
   gha-lint:
-    uses: furedea/reusable-workflows/.github/workflows/gha-lint.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/gha-lint.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       actions: read
       contents: read
 
   dependency-review:
-    uses: furedea/reusable-workflows/.github/workflows/dependency-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/dependency-review.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       contents: read
 
   nix-check:
-    uses: furedea/reusable-workflows/.github/workflows/nix-check.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/nix-check.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       contents: read
 
   ast-grep:
-    uses: furedea/reusable-workflows/.github/workflows/ast-grep.yml@c2cf0e83a6048578f02d5dbd8c8154711cdfbc7b # v1.5.0
+    uses: furedea/reusable-workflows/.github/workflows/ast-grep.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       contents: read
       pull-requests: read
 
   claude-review:
-    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/claude-review.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions:
       contents: read
       pull-requests: write
@@ -97,7 +97,7 @@ jobs:
       claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
   codex-review:
-    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@ca7c5f2973a899e209bc60767f434aecbc186bc9 # v1.1.0
+    uses: furedea/reusable-workflows/.github/workflows/codex-review.yml@5e16a8d7d92a84a4392de97e3ccc1ccac9c8579b # v1.6.0
     permissions: {}
     secrets:
       codex_review_token: ${{ secrets.CODEX_REVIEW_TOKEN }}
